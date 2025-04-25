@@ -46,12 +46,4 @@ for fila in productos:
     id_, articulo, precio = fila
     print(f"{id_:<5} | {articulo:<15} | ${precio:>10}")
 
-
-
-
-
-        
-            
-
-
-
+print("probando guardar")
