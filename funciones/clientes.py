@@ -37,7 +37,48 @@ def agregar_dato(diccionario, listaID):
 # Llamada a la función
 diccionarioClientes, IDs = agregar_dato(clientes, IDclientes)
 
+def eliminar_dato(dicclientes):
+    listanombres = []
+    id = str(input("ingrese el id del cliente para eliminarlo: "))
+    idnumero = int(id)
+    largo = len(dicclientes)
+    while idnumero > largo:
+        id = str(input("ingrese un id de cliente dentro del rango para eliminarlo: "))
+        idnumero = int(id)
+        if idnumero<largo:
+            del dicclientes[id]
+    lista_Clientes = list(dicclientes)#lista con las keys
+
+
+    for i in range (largo-1): #reemplaza los nombres en su posicion
+        if idnumero<int(lista_Clientes[i]):
+            lista_Clientes[i] = str(int(lista_Clientes[i])-1).zfill(2)
+
+    listanombres = dicclientes.values()
+
+    nuevodic = dict(zip(lista_Clientes,listanombres ))
+    return nuevodic
+
+def modificar_cliente(dicclientes):
+    id = str(input("ingrese el id del cliente para cambiarlo: "))
+    idint = int(id)
+    largo = len(dicclientes)
+    while idint > largo:
+        id = str(input("ingrese un id dentro del rango para el reemplazo: "))
+        idint = int(id)
+    cambio = str(input("ingrese el nuevo nombre para el reemplazo: "))
+    dicclientes[id] = cambio
+    return dicclientes
+
+
 # Mostrar clientes actualizados
 print("\nClientes actualizados:")
 for id_cliente, nombre_cliente in diccionarioClientes.items():
     print(f"{id_cliente:10} {nombre_cliente}")
+
+clientes_eliminados = eliminar_dato(clientes)
+print(f"nueva lista :{clientes_eliminados}")
+
+Modificacion_Cliente = modificar_cliente(clientes_eliminados)
+
+print(f"lista con el cliente reemplazado: {Modificacion_Cliente}")
