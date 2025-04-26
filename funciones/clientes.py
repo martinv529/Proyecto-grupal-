@@ -42,10 +42,10 @@ def eliminar_dato(dicclientes):
     id = str(input("ingrese el id del cliente para eliminarlo: "))
     idnumero = int(id)
     largo = len(dicclientes)
-    while idnumero > largo:
+    while idnumero > largo or idnumero <= 0:
         id = str(input("ingrese un id de cliente dentro del rango para eliminarlo: "))
         idnumero = int(id)
-        if idnumero<largo:
+        if idnumero<largo and idnumero > 0:
             del dicclientes[id]
     lista_Clientes = list(dicclientes)#lista con las keys
 
@@ -63,7 +63,7 @@ def modificar_cliente(dicclientes):
     id = str(input("ingrese el id del cliente para cambiarlo: "))
     idint = int(id)
     largo = len(dicclientes)
-    while idint > largo:
+    while idint > largo or idint <= 0:
         id = str(input("ingrese un id dentro del rango para el reemplazo: "))
         idint = int(id)
     cambio = str(input("ingrese el nuevo nombre para el reemplazo: "))
