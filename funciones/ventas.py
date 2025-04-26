@@ -76,3 +76,32 @@ matriz_ventas= cambiar_dato(matriz_ventas)
 for fila in matriz_ventas:
     IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
     print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")
+
+def eliminar_dato(matriz):
+    id_a_eliminar = input("Ingrese el ID de la venta que desea eliminar \n").strip()
+
+    nueva_matriz = []
+    eliminado = False
+
+    for fila in matriz:
+        if fila[0] != id_a_eliminar:
+            nueva_matriz.append(fila)
+        else:
+            eliminado = True
+
+    if eliminado:
+        print(f"La ventacon con ID {id_a_eliminar} fue eliminado correctamente")
+    else:
+        print(f"No se encontró una venta con ID {id_a_eliminar}")
+    
+    for i in range(len(nueva_matriz)-1):
+        if nueva_matriz[i+1][0] > id_a_eliminar:
+            nueva_matriz[i+1][0] = str(int(nueva_matriz[i+1][0])-1).zfill(2)
+
+    return nueva_matriz
+
+matriz_ventas = eliminar_dato(matriz_ventas)
+
+for fila in matriz_ventas:
+    IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
+    print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")

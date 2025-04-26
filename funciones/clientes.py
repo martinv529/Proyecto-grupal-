@@ -10,7 +10,7 @@ for id_cliente, nombre_cliente in clientes.items():
     print(f"{id_cliente:10} {nombre_cliente:4}")
 
 # Función para agregar nuevos clientes
-def agregar_dato(diccionario, listaID, listaNombres):
+def agregar_dato(diccionario, listaID):
     cantidad = int(input("\n¿Cuántos clientes nuevos desea ingresar?\n"))
     contador = 0
     bandera = True
@@ -18,7 +18,6 @@ def agregar_dato(diccionario, listaID, listaNombres):
         if cantidad == contador:
             bandera = False
         else:
-        
             contador += 1
 
             # Calcular el nuevo ID
@@ -28,18 +27,15 @@ def agregar_dato(diccionario, listaID, listaNombres):
             # Pedir el nombre del nuevo cliente
             nombre = input(f"Ingrese el nombre y apellido del nuevo cliente número {contador}: ")
 
-            # Agregar a las listas
+            #agrega el nombre al diccionario
+            diccionario.setdefault(IDnuevo, nombre)
+            #agrega el nuevo ID a la lista de IDs
             listaID.append(IDnuevo)
-            listaNombres.append(nombre)
 
-    # Actualizar el diccionario
-    nuevo_diccionario = dict(zip(listaID, listaNombres))
-    diccionario.update(nuevo_diccionario)
-
-    return diccionario, listaID, listaNombres
+    return diccionario, listaID
 
 # Llamada a la función
-diccionarioClientes, IDs, nombres = agregar_dato(clientes, IDclientes, nombresClientes)
+diccionarioClientes, IDs = agregar_dato(clientes, IDclientes)
 
 # Mostrar clientes actualizados
 print("\nClientes actualizados:")
