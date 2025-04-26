@@ -40,10 +40,42 @@ def agregar_dato(matriz):
 
     return matriz_productos
 
-productos = agregar_dato(matriz_productos)
+matriz_productos = agregar_dato(matriz_productos)
 
-for fila in productos:
+def cambiar_dato(matriz):
+    columnas = len(encabezado)
+    cantidad = int(input("Cuantos productos desea cambiar?\n"))
+    bandera = True
+    contador = 0
+
+    while bandera:
+        if cantidad == contador:
+            bandera=False
+
+        else:
+            contador+=1
+
+            print("1- Nombre del producto")
+            print("2- Precio del producto")
+            cambio=int(input("Que desea cambiar?\n"))
+            idProducto=int(input("Cual es el numero del producto?\n"))
+            if cambio == 1:
+                matriz [idProducto][cambio]=str(input("Ingrese el nombre del producto"))
+            
+            elif cambio == 2:
+                matriz [idProducto][cambio]=int(input("Ingrese el precio"))
+
+    return matriz
+
+matriz_productos= cambiar_dato(matriz_productos)
+
+dicc_productos=[dict(zip(encabezado, fila))for fila in productos]
+
+print("matriz")
+for fila in matriz_productos:
     id_, articulo, precio = fila
     print(f"{id_:<5} | {articulo:<15} | ${precio:>10}")
 
-print("probando guardar")
+#print("diccionario")
+#for producto in dicc_productos:
+#   print(f"{producto['IDarticulo1']:<5}|{producto['articulo']:<15}|${producto['precio']:>10}")
