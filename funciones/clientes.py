@@ -10,7 +10,7 @@ for id_cliente, nombre_cliente in clientes.items():
     print(f"{id_cliente:10} {nombre_cliente:4}")
 
 # Función para agregar nuevos clientes
-def agregar_dato(diccionario, listaID):
+def agregar_cliente(diccionario, listaID):
     cantidad = int(input("\n¿Cuántos clientes nuevos desea ingresar?\n"))
     contador = 0
     bandera = True
@@ -35,9 +35,9 @@ def agregar_dato(diccionario, listaID):
     return diccionario, listaID
 
 # Llamada a la función
-diccionarioClientes, IDs = agregar_dato(clientes, IDclientes)
+clientes, IDs = agregar_cliente(clientes, IDclientes)
 
-def eliminar_dato(dicclientes):
+def eliminar_cliente(dicclientes):
     listanombres = []
     id = str(input("ingrese el id del cliente para eliminarlo: "))
     idnumero = int(id)
@@ -48,7 +48,6 @@ def eliminar_dato(dicclientes):
         if idnumero<largo and idnumero > 0:
             del dicclientes[id]
     lista_Clientes = list(dicclientes)#lista con las keys
-
 
     for i in range (largo-1): #reemplaza los nombres en su posicion
         if idnumero<int(lista_Clientes[i]):
@@ -73,12 +72,12 @@ def modificar_cliente(dicclientes):
 
 # Mostrar clientes actualizados
 print("\nClientes actualizados:")
-for id_cliente, nombre_cliente in diccionarioClientes.items():
+for id_cliente, nombre_cliente in clientes.items():
     print(f"{id_cliente:10} {nombre_cliente}")
 
-clientes_eliminados = eliminar_dato(clientes)
-print(f"nueva lista :{clientes_eliminados}")
+clientes= eliminar_cliente(clientes)
+print(f"nueva lista :{clientes}")
 
-Modificacion_Cliente = modificar_cliente(clientes_eliminados)
+clientes = modificar_cliente(clientes)
 
-print(f"lista con el cliente reemplazado: {Modificacion_Cliente}")
+print(f"lista con el cliente reemplazado: {clientes}")

@@ -17,8 +17,7 @@ productos = [dict(zip(encabezado,fila))for fila in matriz_productos]
 for producto in productos:
     print(producto)
 
-def agregar_dato(matriz):
-    columnas = len(encabezado)
+def agregar_producto(matriz):
     cantidad = int(input("Cuantos productos desea agregar?\n"))
     bandera = True
     contador = 0
@@ -36,14 +35,19 @@ def agregar_dato(matriz):
             
             datos = [IDnuevo, producto, precio]
 
-            matriz_productos.append(datos)
+            matriz.append(datos)
 
-    return matriz_productos
+    return matriz
 
-"""matriz_productos = agregar_dato(matriz_productos)"""
+matriz_productos = agregar_producto(matriz_productos)
 
-def cambiar_dato(matriz):
-    columnas = len(encabezado)
+productos = [dict(zip(encabezado,fila))for fila in matriz_productos]
+
+print("diccionario:")
+for producto in productos:
+    print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
+
+def editar_producto(matriz):
     cantidad = int(input("Cuantos productos desea cambiar?\n"))
     bandera = True
     contador = 0
@@ -58,29 +62,24 @@ def cambiar_dato(matriz):
             print("1- Nombre del producto")
             print("2- Precio del producto")
             cambio=int(input("Que desea cambiar?\n"))
-            idProducto=int(input("Cual es el numero del producto?\n"))
+            idProducto=int(input("Cual es el ID del producto?\n"))
             if cambio == 1:
-                matriz [idProducto][cambio]=str(input("Ingrese el nombre del producto"))
+                matriz [idProducto-1][cambio]=str(input("Ingrese el nombre del producto\n"))
             
             elif cambio == 2:
-                matriz [idProducto][cambio]=int(input("Ingrese el precio"))
+                matriz [idProducto-1][cambio]=int(input("Ingrese el precio\n"))
 
     return matriz
 
-"""matriz_productos= cambiar_dato(matriz_productos)
+matriz_productos= editar_producto(matriz_productos)
 
-dicc_productos=[dict(zip(encabezado, fila))for fila in productos]
+productos=[dict(zip(encabezado, fila))for fila in matriz_productos]
 
-print("matriz")
-for fila in matriz_productos:
-    id_, articulo, precio = fila
-    print(f"{id_:<5} | {articulo:<15} | ${precio:>10}")"""
+print("diccionario:")
+for producto in productos:
+    print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
 
-#print("diccionario")
-#for producto in dicc_productos:
-#   print(f"{producto['IDarticulo1']:<5}|{producto['articulo']:<15}|${producto['precio']:>10}")
-
-def eliminar_dato(matriz):
+def eliminar_producto(matriz):
     id_a_eliminar = input("Ingrese el ID del producto que desea eliminar \n").strip()
 
     nueva_matriz = []
@@ -103,9 +102,9 @@ def eliminar_dato(matriz):
 
     return nueva_matriz
 
-productos = eliminar_dato(matriz_productos)
+matriz_productos = eliminar_producto(matriz_productos)
 
-dicc_productos = [dict(zip(encabezado, fila)) for fila in productos]
+productos = [dict(zip(encabezado, fila)) for fila in productos]
 print("diccionario:")
-for producto in dicc_productos:
+for producto in productos:
     print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
