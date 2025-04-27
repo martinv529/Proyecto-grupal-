@@ -2,11 +2,11 @@ encabezado = ["IDventa", "cantidad", "articulo", "importe", "IDcliente"]
 
 matriz_ventas = [
     ["IDventa", "cantidad", "articulo", "importe", "IDcliente"],
-    ["001", "4", "silla", "40000", "03"],
-    ["002", "2", "mesa de luz", "40000", "02"],
-    ["003", "5", "escritorios", "125000", "05"],
-    ["004", "1", "mesa", "30000", "01"],
-    ["005", "3", "sillon","150000", "04"]
+    ["001", "4", "silla", "40000.00", "03"],
+    ["002", "2", "mesa de luz", "40000.00", "02"],
+    ["003", "5", "escritorios", "125000.00", "05"],
+    ["004", "1", "mesa", "30000.00", "01"],
+    ["005", "3", "sillon","150000.00", "04"]
     ]
 
 def agregar_venta(matriz):
@@ -28,6 +28,7 @@ def agregar_venta(matriz):
             IDcliente = input(f"Ingrese el ID del comprador de la venta {contador}\n")
 
             importe = str(int(precio) * int(cantidadProductos))
+            importe += ".00"
             
             datos = [IDnuevo, cantidadProductos, producto, importe, IDcliente]
 
@@ -53,18 +54,25 @@ def editar_venta(matriz):
             print("3- Importe")
             print("4- ID Cliente")
             cambio=int(input("Que desea cambiar?\n"))
-            IdCiente=int(input("Cual es el numero de venta?\n"))
+            while cambio > 4 or cambio < 1:
+                cambio=int(input("Ingrese una opcion valida\n"))
+            idVenta=int(input("Cual es el ID de venta?\n"))
+            while idVenta < int(matriz[1][0]) or idVenta > int(matriz[len(matriz)-1][0]):
+                idVenta = int(input("Ingrese un ID dentro del rango\n"))
             if cambio == 1:
-                matriz [IdCiente][cambio]=int(input("Ingrese la cantidad de articulos\n"))
+                matriz [idVenta][cambio]=int(input("Ingrese la cantidad de articulos\n"))
             
             elif cambio == 2:
-                matriz [IdCiente][cambio]=input("Ingrese el articulo\n")
+                matriz [idVenta][cambio]=input("Ingrese el articulo\n")
             
             elif cambio == 3:
-                matriz [IdCiente][cambio]=int(input("Ingrese el importe total\n"))
+                matriz [idVenta][cambio]=input("Ingrese el importe total\n")
+                matriz [idVenta][cambio] += ".00"
             
-            elif cambio == 4:
-                matriz [IdCiente][cambio]=int(input("Ingrese el id del cliente\n"))
+            else:
+                matriz [idVenta][cambio]=input("Ingrese el id del cliente\n").zfill(2)
+
+            
 
     return matriz
 
@@ -74,6 +82,9 @@ def eliminar_venta(matriz):
 
     nueva_matriz = []
     eliminado = False
+
+    while id_a_eliminar > matriz[len(matriz)-1][0] or id_a_eliminar < matriz[1][0]:
+        id_a_eliminar = input("Ingrese un ID dentro del rango\n").strip()
 
     for fila in matriz:
         if fila[0] != id_a_eliminar:
@@ -94,4 +105,4 @@ def eliminar_venta(matriz):
 
 if __name__ == "__main__":
     # Este código solo se ejecutará cuando se ejecute ventas.py directamente
-    print("Módulo ventas ejecutado directamente")
+    print("Find e la ejecucion")

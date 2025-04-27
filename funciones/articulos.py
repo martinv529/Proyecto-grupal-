@@ -1,9 +1,9 @@
 matriz_productos =[
-    ["01", "silla", "10000"], 
-    ["02","mesa","30000"],
-    ["03","escritorio","25000"],
-    ["04","sillon","50000"],
-    ["05","mesa de luz","20000"]
+    ["01", "silla", "10000.00"], 
+    ["02","mesa","30000.00"],
+    ["03","escritorio","25000.00"],
+    ["04","sillon","50000.00"],
+    ["05","mesa de luz","20000.00"]
     ]
 
 encabezado = ["IDarticulo", "articulo", "precio"]
@@ -25,6 +25,7 @@ def agregar_producto(matriz):
             idNuevo = str(int(idAnterior) + 1).zfill(2) 
             producto = input(f"Ingrese el nombre del producto numero {contador}\n")
             precio = input(f"Ingrese el precio del producto numero {contador}\n")
+            precio += ".00"
             
             datos = [idNuevo, producto, precio]
 
@@ -49,12 +50,18 @@ def editar_producto(matriz):
             print("1- Nombre del producto")
             print("2- Precio del producto")
             cambio=int(input("Que desea cambiar?\n"))
-            idProducto=int(input("Cual es el ID del producto?\n"))
+            while cambio > 2 or cambio < 1:
+                cambio=int(input("Ingrese una opcion valida\n"))
+            idProducto=input("Cual es el ID del producto?\n")
+            while idProducto > matriz[len(matriz)-1][0] or idProducto < matriz[0][0]:
+                idProducto = input("Ingrese un ID dentro del rango\n").strip()
+
             if cambio == 1:
-                matriz [idProducto-1][cambio]=str(input("Ingrese el nombre del producto\n"))
+                matriz [int(idProducto)-1][cambio]=str(input("Ingrese el nombre del producto\n"))
             
             elif cambio == 2:
-                matriz [idProducto-1][cambio]=int(input("Ingrese el precio\n"))
+                matriz [int(idProducto)-1][cambio]=input("Ingrese el precio\n")
+                matriz [int(idProducto)-1][cambio] += ".00"
 
     return matriz
 
@@ -66,6 +73,10 @@ def eliminar_producto(matriz):
 
     nueva_matriz = []
     eliminado = False
+    
+    while id_a_eliminar > matriz[len(matriz)-1][0] or id_a_eliminar < matriz[0][0]:
+        id_a_eliminar = input("Ingrese un ID dentro del rango\n").strip()
+        
 
     for fila in matriz:
         if fila[0] != id_a_eliminar:
@@ -89,4 +100,4 @@ productos = [dict(zip(encabezado, fila)) for fila in productos]
 
 if __name__ == "__main__":
     # Este código solo se ejecutará cuando se ejecute ventas.py directamente
-    print("Módulo articulos ejecutado directamente")
+    print("Fin de la ejecucion")
