@@ -8,14 +8,7 @@ matriz_productos =[
 
 encabezado = ["IDarticulo", "articulo", "precio"]
 
-for fila in matriz_productos:
-    id_, articulo, precio = fila
-    print(f"{id_:<5} | {articulo:<15} | ${precio:>10}")
-
 productos = [dict(zip(encabezado,fila))for fila in matriz_productos]
-
-for producto in productos:
-    print(producto)
 
 def agregar_producto(matriz):
     cantidad = int(input("Cuantos productos desea agregar?\n"))
@@ -28,24 +21,18 @@ def agregar_producto(matriz):
         else:
             contador += 1
             
-            IDanterior = matriz[len(matriz)-1][0]
-            IDnuevo = str(int(IDanterior) + 1).zfill(2) 
+            idAnterior = matriz[len(matriz)-1][0]
+            idNuevo = str(int(idAnterior) + 1).zfill(2) 
             producto = input(f"Ingrese el nombre del producto numero {contador}\n")
             precio = input(f"Ingrese el precio del producto numero {contador}\n")
             
-            datos = [IDnuevo, producto, precio]
+            datos = [idNuevo, producto, precio]
 
             matriz.append(datos)
 
     return matriz
 
-matriz_productos = agregar_producto(matriz_productos)
-
 productos = [dict(zip(encabezado,fila))for fila in matriz_productos]
-
-print("diccionario:")
-for producto in productos:
-    print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
 
 def editar_producto(matriz):
     cantidad = int(input("Cuantos productos desea cambiar?\n"))
@@ -71,13 +58,8 @@ def editar_producto(matriz):
 
     return matriz
 
-matriz_productos= editar_producto(matriz_productos)
-
 productos=[dict(zip(encabezado, fila))for fila in matriz_productos]
 
-print("diccionario:")
-for producto in productos:
-    print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
 
 def eliminar_producto(matriz):
     id_a_eliminar = input("Ingrese el ID del producto que desea eliminar \n").strip()
@@ -96,15 +78,15 @@ def eliminar_producto(matriz):
     else:
         print(f"No se encontró un prodcuto con ID {id_a_eliminar}")
     
-    for i in range(len(nueva_matriz)-1):
-        if nueva_matriz[i+1][0] > id_a_eliminar:
-            nueva_matriz[i+1][0] = str(int(nueva_matriz[i+1][0])-1).zfill(2)
-
+    for i in range(len(nueva_matriz)):
+        if nueva_matriz[i][0] > id_a_eliminar:
+            nueva_matriz[i][0] = str(int(nueva_matriz[i][0])-1).zfill(2)
+    
     return nueva_matriz
 
-matriz_productos = eliminar_producto(matriz_productos)
 
 productos = [dict(zip(encabezado, fila)) for fila in productos]
-print("diccionario:")
-for producto in productos:
-    print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
+
+if __name__ == "__main__":
+    # Este código solo se ejecutará cuando se ejecute ventas.py directamente
+    print("Módulo articulos ejecutado directamente")

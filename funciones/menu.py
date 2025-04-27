@@ -1,4 +1,6 @@
-import ventas 
+import ventas
+import articulos
+import clientes
 
 def mostrar_menu():
     print(" ")
@@ -46,13 +48,25 @@ def mostrar_menu():
                     continue  # vuelve a mostrar el submenú
                     
                 if opcion == 1:
-                    print("Opcion 1")
+                    articulos.productos = [dict(zip(articulos.encabezado,fila))for fila in articulos.matriz_productos]
+                    for producto in articulos.productos:
+                        print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
+
                 elif opcion == 2:
-                    print("Opcion 2")
+                    articulos.matriz_productos=articulos.agregar_producto(articulos.matriz_productos)
+                    articulos.productos = [dict(zip(articulos.encabezado,fila))for fila in articulos.matriz_productos]
+                    for producto in articulos.productos:
+                        print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
                 elif opcion == 3:
-                    print("Opcion 3")
+                    articulos.matriz_productos=articulos.editar_producto(articulos.matriz_productos)
+                    articulos.productos = [dict(zip(articulos.encabezado,fila))for fila in articulos.matriz_productos]
+                    for producto in articulos.productos:
+                        print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
                 elif opcion == 4:
-                    print("Opcion 4")
+                    articulos.matriz_productos=articulos.eliminar_producto(articulos.matriz_productos)
+                    articulos.productos = [dict(zip(articulos.encabezado,fila))for fila in articulos.matriz_productos]
+                    for producto in articulos.productos:
+                        print(f"{producto['IDarticulo']:<5} | {producto['articulo']:<15} | ${producto['precio']:>10}")
                 elif opcion == 5:
                     break
                 else: 
@@ -77,13 +91,24 @@ def mostrar_menu():
                     continue  # vuelve a mostrar el submenú
 
                 if opcion == 1:
-                    print("Opcion 1")
+                    for id_cliente, nombre_cliente in clientes.clientes.items():
+                        print(f"{id_cliente:10} {nombre_cliente:4}")
+
                 elif opcion == 2:
-                    print("Opcion 2")
+                    clientes.clientes= clientes.agregar_cliente(clientes.clientes, clientes.idClientes)
+                    for id_cliente, nombre_cliente in clientes.clientes.items():
+                        print(f"{id_cliente:10} {nombre_cliente:4}")
+
                 elif opcion == 3:
-                    print("Opcion 3")
+                    clientes.clientes = clientes.modificar_cliente(clientes.clientes)
+                    for id_cliente, nombre_cliente in clientes.clientes.items():
+                        print(f"{id_cliente:10} {nombre_cliente:4}")
+
                 elif opcion == 4:
-                    print("Opcion 4")
+                    clientes.clientes= clientes.eliminar_cliente(clientes.clientes)
+                    for id_cliente, nombre_cliente in clientes.clientes.items():
+                        print(f"{id_cliente:10} {nombre_cliente:4}")
+                
                 elif opcion == 5:
                     break 
                 else: 
@@ -110,12 +135,25 @@ def mostrar_menu():
                         for fila in ventas.matriz_ventas:
                             IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
                             print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")
+
                 elif opcion == 2:
-                    ventas.agregar_venta(ventas.matriz_ventas)
+                    ventas.matriz_ventas=ventas.agregar_venta(ventas.matriz_ventas)
+                    for fila in ventas.matriz_ventas:
+                            IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
+                            print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")
+
                 elif opcion == 3:
-                    ventas.editar_venta_venta(ventas.matriz_ventas)
+                    ventas.matriz_ventas=ventas.editar_venta(ventas.matriz_ventas)
+                    for fila in ventas.matriz_ventas:
+                            IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
+                            print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")
+
                 elif opcion == 4:
-                    ventas.eliminar_venta_venta(ventas.matriz_ventas)
+                    ventas.matriz_ventas=ventas.eliminar_venta(ventas.matriz_ventas)
+                    for fila in ventas.matriz_ventas:
+                            IDnuevo, cantidadProductos, producto, importe, IDcliente = fila
+                            print(f"{IDnuevo:<5} | {cantidadProductos:<10} | {producto:<15} | ${importe:<15} | {IDcliente:>10}")
+                            
                 elif opcion == 5:
                     break 
                 else: 

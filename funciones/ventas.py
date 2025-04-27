@@ -52,10 +52,10 @@ def editar_venta(matriz):
             print("2- articulo")
             print("3- Importe")
             print("4- ID Cliente")
-            cambio=int(input("Que desea cambiar?"))
-            IdCiente=int(input("Cual es el numero de venta?"))
+            cambio=int(input("Que desea cambiar?\n"))
+            IdCiente=int(input("Cual es el numero de venta?\n"))
             if cambio == 1:
-                matriz [IdCiente][cambio]=int(input("Ingrese la cantidad de articulos"))
+                matriz [IdCiente][cambio]=int(input("Ingrese la cantidad de articulos\n"))
             
             elif cambio == 2:
                 matriz [IdCiente][cambio]=input("Ingrese el articulo\n")
